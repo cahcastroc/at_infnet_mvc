@@ -1,0 +1,21 @@
+﻿@{
+}
+
+<form method="post" action="/Pessoa/Adicionar">
+    @Html.AntiForgeryToken() 
+        
+    <label for="Nome">Nome</label>
+    <input type="text" class="form-control"  placeholder="Nome" name="Nome" required>
+    <label for="Sobrenome">Sobrenome</label>
+    <input type="text" class="form-control"  placeholder="Sobrenome" name="Sobrenome" required>
+    <label for="Aniversario">Aniversário</label>
+    <input type="date" class="form-control"  placeholder="Aniversario" name="Aniversario" required>
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-outline-success" />
+    
+    <button type="button" class="btn btn-outline-info">
+        @Html.ActionLink("Home", "Index")
+    </button>
+
+    </form>
+    

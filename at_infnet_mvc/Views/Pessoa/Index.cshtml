@@ -1,0 +1,91 @@
+﻿@model at_infnet_mvc.Models.ObjLista;
+@{
+}
+<div>
+    <h4 class="text-center">Aniversariantes do Dia</h4>
+    <hr />
+
+    <table class="table table-bordered">
+
+        <thead class="text-center">
+
+            <tr>
+               
+                <td><strong>Nome</strong></td>
+                <td><strong>Sobrenome</strong></td>
+                <td><strong>Aniversário</strong></td>
+                
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @{
+               
+                @foreach (var pessoa in Model.AninversariantesDoDia)
+                {
+                    <tr>                      
+                        <td>
+                            @pessoa.Nome
+                        </td>
+                        <td>
+                            @pessoa.Sobrenome
+                        </td>
+                        <td>
+                            @pessoa.Aniversario.Day.ToString("00")/@pessoa.Aniversario.Month.ToString("00")
+                        </td>                        
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+
+<div>
+    <h4 class="text-center">Próximos aniversariantes</h4>
+    <hr />
+
+    <table class="table table-bordered">
+
+        <thead class="text-center">
+
+            <tr>
+
+                <td><strong>Nome</strong></td>
+                <td><strong>Sobrenome</strong></td>
+                <td><strong>Aniversário</strong></td>
+
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @{
+
+                @foreach (var pessoa in Model.ListaOrdenada)
+                {
+                    <tr>
+                        <td>
+                            @pessoa.Nome
+                        </td>
+                        <td>
+                            @pessoa.Sobrenome
+                        </td>
+                        <td>
+                            @pessoa.Aniversario.Day.ToString("00")/@pessoa.Aniversario.Month.ToString("00")
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+
+<div class="text-center">
+<button type="button" class="btn btn-outline-primary">
+    @Html.ActionLink("Ver todos os amigos", "ListaTodos")
+</button>
+    <button type="button" class="btn btn-outline-primary">
+        @Html.ActionLink("Adicionar amigo", "Adicionar")
+    </button>
+</div>

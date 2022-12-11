@@ -1,0 +1,52 @@
+﻿@model List<at_infnet_mvc.Models.Pessoa>;
+@{
+}
+
+<h2>Busca</h2>
+<hr />
+@foreach (var pessoa in Model)
+{
+    <dl class="row">
+        <dt class="col-sm-2">
+            Id
+        </dt>
+        <dd class="col-sm-10">
+            @pessoa.Id
+        </dd>
+        <dt class="col-sm-2">
+            Nome
+        </dt>
+        <dd class="col-sm-10">
+            @pessoa.Nome
+        </dd>
+        <dt class="col-sm-2">
+            Sobrenome
+        </dt>
+        <dd class="col-sm-10">
+            @pessoa.Sobrenome
+        </dd>
+        <dt class="col-sm-2">
+            Data de nascimento
+        </dt>
+        <dd class="col-sm-10">
+            @pessoa.Aniversario
+        </dd>
+
+    </dl>
+    <div>
+        <button type="button" class="btn btn-outline-info">
+
+            @Html.ActionLink("Editar", "Editar", pessoa)
+        </button>
+        <button type="button" class="btn btn-outline-danger">
+
+            @Html.ActionLink("Deletar", "Deletar", new { Id = pessoa.Id })
+        </button>
+        <hr />
+    </div>
+
+
+
+
+
+}
