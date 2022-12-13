@@ -3,41 +3,49 @@
 }
 <div>
     <h4 class="text-center">Aniversariantes do Dia</h4>
-    <hr />
-
-    <table class="table table-bordered">
-
-        <thead class="text-center">
-
-            <tr>
-               
-                <td><strong>Nome</strong></td>
-                <td><strong>Sobrenome</strong></td>
-                <td><strong>Aniversário</strong></td>
-                
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            @{
-               
-                @foreach (var pessoa in Model.AninversariantesDoDia)
+    <hr />     
+       @{
+         @if (Model.AninversariantesDoDia.Count > 0)
                 {
-                    <tr>                      
-                        <td>
-                            @pessoa.Nome
-                        </td>
-                        <td>
-                            @pessoa.Sobrenome
-                        </td>
-                        <td>
-                            @pessoa.Aniversario.Day.ToString("00")/@pessoa.Aniversario.Month.ToString("00")
-                        </td>                        
-                    </tr>
-                }
 
-            }
-        </tbody>
-    </table>
+           <table class="table table-bordered">    
+                <thead class="text-center">
+
+                    <tr>
+
+                        <td><strong>Nome</strong></td>
+                        <td><strong>Sobrenome</strong></td>
+                        <td><strong>Aniversário</strong></td>
+
+                    </tr>
+                </thead>
+                    
+                <tbody class="text-center">
+                    @foreach (var pessoa in Model.AninversariantesDoDia)
+                    {
+                        <tr>
+                            <td>
+                                @pessoa.Nome
+                            </td>
+                            <td>
+                                @pessoa.Sobrenome
+                            </td>
+                            <td>
+                                @pessoa.Aniversario.Day.ToString("00")/@pessoa.Aniversario.Month.ToString("00")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+           </table>
+
+
+                    
+
+         }else {
+            <h3 class="text-center">Nenhum aniversariante no dia de hoje!</h3>
+         }
+     }
+        
 </div>
 <br />
 <br />

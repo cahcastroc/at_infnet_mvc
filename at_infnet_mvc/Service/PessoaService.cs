@@ -1,5 +1,6 @@
 ﻿using at_infnet_mvc.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace at_infnet_mvc.Service
 {
@@ -57,11 +58,23 @@ namespace at_infnet_mvc.Service
         {
             return db.pessoas.Where(p => p.Aniversario.Day == DateTime.Now.Day && p.Aniversario.Month == DateTime.Now.Month).ToList();
         }
-        
         public List<Pessoa> OrdenacaoAniversarios()
         {
-            return db.pessoas.OrderByDescending(p => p.Aniversario.Month).ThenByDescending(p => p.Aniversario.Day).ToList();
-        }               
+
+            return db.pessoas.AsEnumerable().OrderBy(p =>
+             {
+                 var ordemAniversario = new DateTime(DateTime.Today.Year, p.Aniversario.Month, p.Aniversario.Day);
+                 if (DateTime.Today.Month > p.Aniversario.Month)
+                 {
+                     ordemAniversario = new DateTime(DateTime.Today.Year + 1, p.Aniversario.Month, p.Aniversario.Day);
+                 }
+                 if (DateTime.Today.Month == p.Aniversario.Month && DateTime.Today.Day > p.Aniversario.Day)
+                 {
+                     ordemAniversario = ordemAniversario.AddYears(1);
+                 }
+                 return ordemAniversario.Subtract(DateTime.Today).TotalDays;
+             }).ToList();
+        }        
 
     }
 }

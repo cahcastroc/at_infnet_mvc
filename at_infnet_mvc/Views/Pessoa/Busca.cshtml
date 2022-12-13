@@ -26,10 +26,10 @@
             @pessoa.Sobrenome
         </dd>
         <dt class="col-sm-2">
-            Data de nascimento
+            Aniversário
         </dt>
         <dd class="col-sm-10">
-            @pessoa.Aniversario
+            @pessoa.Aniversario.Day.ToString("00")/@pessoa.Aniversario.Month.ToString("00")
         </dd>
 
     </dl>
